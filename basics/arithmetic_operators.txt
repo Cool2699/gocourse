@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+
+	//Overflow with signed int
+	var maxInt int64 = 9223372036854775807
+	fmt.Println(maxInt)
+
+	maxInt++
+	fmt.Println(maxInt)
+
+	//Overflow with unsigned int
+	var uMaxInt uint64 = 18446744073709551615
+	fmt.Println(uMaxInt)
+
+	uMaxInt++
+	fmt.Println(uMaxInt)
+
+	//Underflow
+	var smallFloat float64 = 1.0e-323
+	smallFloat /= math.MaxFloat64
+	fmt.Println(smallFloat)
+}

@@ -1,0 +1,63 @@
+package main
+
+import (
+	"fmt"
+	"maps"
+)
+
+func main() {
+	myMap := make(map[string]int)
+	fmt.Println(myMap)
+
+	myMap["key1"] = 9
+	myMap["name"] = 123
+	myMap["test"] = 100
+	fmt.Println(myMap)
+	delete(myMap, "test")
+	fmt.Println(myMap)
+
+	// clear(myMap)
+	// fmt.Println(myMap)
+
+	_, ok := myMap["key1"]
+	// fmt.Println(value)
+	if ok {
+		fmt.Println(ok)
+	}
+
+	myMap2 := map[string]int{
+		"a": 1,
+		"b": 2,
+	}
+	fmt.Println(myMap2)
+	myMap3 := map[string]int{
+		"a": 1,
+		"b": 2,
+	}
+
+	if maps.Equal(myMap2, myMap3) {
+		fmt.Println("Maps are equal")
+	}
+
+	for k, v := range myMap3 {
+		fmt.Println(k, v)
+	}
+
+	//OR
+
+	for _, v := range myMap3 {
+		fmt.Println(v)
+	}
+
+	var myMap4 map[string]string
+
+	myMap4 = make(map[string]string)
+	myMap4["key"] = "Value"
+	fmt.Println(myMap4["key"])
+
+	fmt.Println(len(myMap))
+
+	myMap5 := make(map[string]map[string]string)
+	myMap5["map1"] = myMap4
+	fmt.Println(myMap5)
+}

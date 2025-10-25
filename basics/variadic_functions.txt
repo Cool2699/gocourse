@@ -1,0 +1,23 @@
+package main
+
+import "fmt"
+
+func main() {
+	// fmt.Println(sum(1, 2, 3))
+	statement, total := sum("The sum of the values", 1, 2, 3)
+	fmt.Println(statement)
+	fmt.Println(total)
+
+	numbers := []int{1, 2, 3, 4, 5}
+	statement2, total2 := sum("Test", numbers...)
+	fmt.Println(statement2)
+	fmt.Println(total2)
+}
+
+func sum(returnString string, nums ...int) (string, int) {
+	total := 0
+	for _, v := range nums {
+		total += v
+	}
+	return returnString, total
+}

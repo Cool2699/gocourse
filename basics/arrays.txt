@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+func main() {
+	numbers := []int{1, 2, 3, 4, 5, 6}
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+
+	fmt.Println(numbers)
+	fmt.Println(matrix)
+
+	originalArray := [3]int{1, 2, 3}
+	var copiedArray *[3]int
+
+	copiedArray = &originalArray
+	copiedArray[0] = 100
+
+	fmt.Println(originalArray)
+	fmt.Println(copiedArray)
+}

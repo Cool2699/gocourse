@@ -1,0 +1,44 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	for i := 1; i <= 5; i++ {
+		//
+	}
+
+	//iterate over collection
+	numbers := []int{1, 2, 3, 4, 5, 6}
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+
+	fmt.Println(matrix)
+
+	for index, value := range numbers {
+		fmt.Printf("Index: %d, Value: %d\n", index, value)
+	}
+
+	for i := range 10 {
+		fmt.Println(i)
+	}
+
+	//While loops
+	i := 1
+	for i <= 5 {
+		fmt.Println("Iteration", i)
+		i++
+	}
+
+	sum := 0
+	for {
+		sum += 10
+		fmt.Println("Sum: ", sum)
+		if sum >= 50 {
+			break
+		}
+	}
+}
