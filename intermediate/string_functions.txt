@@ -1,0 +1,87 @@
+package main
+
+import (
+	"fmt"
+	"regexp"
+	"strconv"
+	"strings"
+	"unicode/utf8"
+)
+
+func main() {
+	str := "Hello, Go!"
+	fmt.Println(len(str))
+	fmt.Println(str[0])
+	fmt.Println(string(str[0]))
+	fmt.Println(str[1:5])
+
+	//String Conversion
+	num := 18
+	str3 := strconv.Itoa(num)
+	fmt.Println(len(str3))
+
+	//Strings splitting
+	fruits := "apple, orange, banana"
+	fruits1 := "apple-orange-banana"
+	parts := strings.Split(fruits, ",")
+	parts1 := strings.Split(fruits1, "-")
+	fmt.Println(parts)
+	fmt.Println(parts1)
+
+	countries := []string{"Germany", "France", "Italy"}
+	joined := strings.Join(countries, ", ")
+	fmt.Println(joined)
+
+	fmt.Println(strings.Contains(str, "Go"))
+
+	replaced := strings.Replace(str, "Go", "World", -1)
+	fmt.Println(replaced)
+
+	strWithSpace := " Hello Everyone!"
+	fmt.Println(strings.TrimSpace(strWithSpace))
+
+	fmt.Println(strings.ToLower(str))
+	fmt.Println(strings.ToUpper(str))
+
+	fmt.Println(strings.Repeat("Hi! ", 3))
+
+	fmt.Println(strings.Count("Hello", "He"))     //1
+	fmt.Println(strings.Count("Hello", "l"))      //2
+	fmt.Println(strings.HasPrefix("Hello", "He")) //true
+	fmt.Println(strings.HasPrefix("Hello", "he")) //false
+	fmt.Println(strings.HasSuffix("Hello", "lo")) //true
+
+	//Regular expressions
+	str5 := "Hello, 123 Go! 11"
+	re := regexp.MustCompile(`\d+`)
+	matches := re.FindAllString(str5, -1)
+	fmt.Println(matches)
+	fmt.Println(len(matches))
+
+	str6 := "Hello, 世界"
+	fmt.Println(utf8.RuneCountInString(str6)) //9
+
+	//STRING_BUILDER
+	var builder strings.Builder
+
+	//Write some strings
+	builder.WriteString("Hello")
+	builder.WriteString(", ")
+	builder.WriteString("World!")
+
+	//Convert builder to a string
+	result := builder.String()
+	fmt.Println(result)
+
+	//Using Writerune to add a character
+	builder.WriteRune(' ')
+	builder.WriteString("How are you?")
+	result = builder.String()
+	fmt.Println(result)
+
+	//Reset the builder
+	builder.Reset()
+	builder.WriteString("Starting fresh!")
+	result = builder.String()
+	fmt.Println(result)
+}

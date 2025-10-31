@@ -1,0 +1,59 @@
+package main
+
+import "fmt"
+
+func main() {
+	i := 11_111_505.5
+	str := "Hello World!"
+
+	fmt.Printf("%v\n", i)
+	fmt.Printf("%#v\n", i)
+	fmt.Printf("%T\n", i)
+	fmt.Printf("%v%%\n", i)
+
+	fmt.Printf("%v\n", str)
+	fmt.Printf("%#v\n", str)
+	fmt.Printf("%T\n", str)
+
+	//Integer Formatting Verbs
+	a := 18
+
+	fmt.Printf("%b\n", a)
+	fmt.Printf("%d\n", a)
+	fmt.Printf("%+d\n", a)
+	fmt.Printf("%o\n", a)
+	fmt.Printf("%O\n", a)
+	fmt.Printf("%x\n", a)
+	fmt.Printf("%X\n", a)
+	fmt.Printf("%#x\n", a)
+	fmt.Printf("%4d\n", a)
+	fmt.Printf("%-4d\n", a)
+	fmt.Printf("%04d\n", a)
+
+	//String Formatting Verbs
+	txt := "World"
+
+	fmt.Printf("%s\n", txt)
+	fmt.Printf("%q\n", txt)
+	fmt.Printf("%8s\n", txt)
+	fmt.Printf("%-8s\n", txt)
+	fmt.Printf("%x\n", txt)
+	fmt.Printf("% x\n", txt)
+
+	//Boolean Formatting Verbs
+	t := true
+	f := false
+
+	fmt.Printf("%t\n", t)
+	fmt.Printf("%t\n", f)
+	fmt.Printf("%v\n", f)
+
+	//Float Formatting Verbs
+	flt := 9.18
+
+	fmt.Printf("%e\n", flt)
+	fmt.Printf("%f\n", flt)
+	fmt.Printf("%.2f\n", flt)
+	fmt.Printf("%6.2f\n", flt)
+	fmt.Printf("%g\n", flt)
+}

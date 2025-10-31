@@ -1,0 +1,67 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+)
+
+func chechError(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
+func main() {
+	// err := os.Mkdir("subdir", 0755)
+	// chechError(err)
+
+	// chechError(os.Mkdir("subdir", 0755))
+
+	// defer os.RemoveAll("subdir")
+
+	// os.WriteFile("subdir/file.txt", []byte(""), 0755)
+
+	// chechError(os.MkdirAll("subdir/parent/child", 0755))
+	// chechError(os.MkdirAll("subdir/parent/child1", 0755))
+	// chechError(os.MkdirAll("subdir/parent/child2", 0755))
+	// chechError(os.MkdirAll("subdir/parent/child3", 0755))
+	// os.WriteFile("subdir/parent/file.txt", []byte(""), 0755)
+	// os.WriteFile("subdir/parent/child/file.txt", []byte(""), 0755)
+
+	// result, err := os.ReadDir("subdir/parent")
+	// chechError(err)
+
+	// for _, entry := range result {
+	// 	fmt.Println("Entry:", entry.Name(), entry.IsDir(), entry.Type())
+	// }
+
+	// chechError(os.Chdir("subdir/parent/child"))
+
+	// result, err = os.ReadDir(".")
+	// chechError(err)
+
+	// fmt.Println("Reading...")
+	// for _, entry := range result {
+	// 	fmt.Println(entry)
+	// }
+
+	// chechError(os.Chdir("../../.."))
+	// dir, err := os.Getwd()
+	// chechError(err)
+	// fmt.Println(dir)
+
+	pathfile := "subdir"
+	err := filepath.WalkDir(pathfile, func(path string, d os.DirEntry, err error) error {
+		if err != nil {
+			fmt.Println("Error:", err)
+			return err
+		}
+		fmt.Println("Path:", path)
+		return nil
+	})
+
+	chechError(err)
+
+	chechError(os.RemoveAll("./subdir"))
+}

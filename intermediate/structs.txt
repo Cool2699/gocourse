@@ -1,0 +1,78 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	p := Person{
+		firstName: "John",
+		lastName:  "Doe",
+		age:       30,
+		address: Address{
+			city:    "London",
+			country: "England",
+		},
+		PhoneHomeCell: PhoneHomeCell{
+			home: "431232",
+			cell: "123123123",
+		},
+	}
+
+	p1 := Person{
+		firstName: "Jane",
+		age:       25,
+	}
+
+	p1.address.city = "New York"
+	p1.address.country = "USA"
+
+	fmt.Println(p.firstName)
+	fmt.Println(p1.firstName)
+	fmt.Println(p.fullName())
+	fmt.Println(p.address.city)
+	fmt.Println(p.address.country)
+	fmt.Println(p1.address.city)
+	fmt.Println(p1.address.country)
+	fmt.Println(p.cell)
+	fmt.Println(p.PhoneHomeCell.home)
+	fmt.Println(p == p1)
+
+	//Anonymous Structs
+	user := struct {
+		username string
+		email    string
+	}{
+		username: "user123",
+		email:    "test@test.com",
+	}
+
+	fmt.Println(user.username)
+	p1.incrementAgeByOne()
+	fmt.Println(p1.age)
+}
+
+type Person struct {
+	firstName string
+	lastName  string
+	age       int
+	address   Address
+	PhoneHomeCell
+}
+
+type Address struct {
+	city    string
+	country string
+}
+
+type PhoneHomeCell struct {
+	home string
+	cell string
+}
+
+func (p Person) fullName() string {
+	return fmt.Sprintln(p.firstName, p.lastName)
+}
+
+func (p *Person) incrementAgeByOne() {
+	p.age++
+}

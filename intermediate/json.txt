@@ -1,0 +1,103 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Person struct {
+	Name         string `json:"name"`
+	Age          int    `json:"age,omitempty"` //if not omitempty, age will be present with default 0 value
+	EmailAddress string
+	Address      Address `json:"address"`
+}
+
+type Address struct {
+	City  string `json:"city"`
+	State string `json:"state"`
+}
+
+type Employee struct {
+	Name    string  `json:"name"`
+	EmpID   string  `json:"emp_id"`
+	Age     int     `json:"age"`
+	Address Address `json:"address"`
+}
+
+func main() {
+	person := Person{Name: "John", EmailAddress: "sample@example.com"}
+
+	//Marshalling
+	jsonData, err := json.Marshal(person)
+	if err != nil {
+		fmt.Println("Error marshalling to JSON:", err)
+		return
+	}
+
+	fmt.Println(string(jsonData))
+
+	person1 := Person{
+		Name:         "Jane",
+		Age:          30,
+		EmailAddress: "test@test.com",
+		Address: Address{
+			City:  "New York",
+			State: "NY",
+		},
+	}
+
+	jsonData1, err := json.Marshal(person1)
+	if err != nil {
+		fmt.Println("Error marshalling to JSON:", err)
+		return
+	}
+
+	fmt.Println(string(jsonData1))
+
+	jsonData2 := `{
+		"name": "Jenny Doe", 
+		"emp_id": "0009",
+		"age": 30,
+		"address": {
+			"city": "San Jose",
+			"state": "CA"
+		}
+	}`
+
+	var employee Employee
+	err = json.Unmarshal([]byte(jsonData2), &employee)
+	if err != nil {
+		fmt.Println("Error unmarshalling JSON:", err)
+		return
+	}
+	fmt.Println("New value:", employee)
+
+	listOfCityState := []Address{
+		{City: "New York", State: "NY"},
+		{City: "San Jose", State: "CA"},
+		{City: "Las Vegas", State: "NV"},
+		{City: "Modesto", State: "CA"},
+		{City: "Clearwater", State: "FL"},
+	}
+
+	fmt.Println(listOfCityState)
+	jsonList, err := json.Marshal(listOfCityState)
+	if err != nil {
+		fmt.Println("Error marshalling to JSON:", err)
+		return
+	}
+	fmt.Println("JSON list:", string(jsonList))
+
+	//Handling uknown json structures
+	jsonData3 := `{"full_name": "John", "age": 30, "address": {"city": "New York", "state": "NY"}}`
+
+	var data map[string]any
+
+	err = json.Unmarshal([]byte(jsonData3), &data)
+	if err != nil {
+		fmt.Println("Error marshalling to JSON:", err)
+		return
+	}
+
+	fmt.Println("Unmarshalled JSON:", data)
+}

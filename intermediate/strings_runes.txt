@@ -1,0 +1,54 @@
+package main
+
+import (
+	"fmt"
+	"unicode/utf8"
+)
+
+func main() {
+	message := "Hello, \nGo!"
+	message1 := "Hello, \tGo!"
+	message2 := "Hello, \rGo!" //Hello -> Go!lo
+	rawMessage := `Hello\nGo`  //doesn't work
+
+	fmt.Println(message)
+	fmt.Println(message1)
+	fmt.Println(message2)
+	fmt.Println(rawMessage)
+
+	fmt.Println("length of message variable is", len(message))
+	fmt.Println("the first character", message[0]) //ASCII
+
+	str1 := "Apple"
+	str2 := "Banana"
+	fmt.Println(str1 < str2)
+
+	for _, char := range message {
+		// fmt.Printf("Character at index %d is %c\n", i, char)
+		fmt.Printf("%x\n", char)
+	}
+
+	fmt.Println("Rune count:", utf8.RuneCountInString(message1)) //number of characters utf8
+
+	//Runes
+	var ch rune = 'a'
+	fmt.Println(ch)
+	fmt.Printf("%c\n", ch)
+
+	cstr := string(ch)
+	fmt.Println(cstr)
+	fmt.Printf("Type of cstr is %T\n", cstr)
+
+	const NIHONGO = "日本語" //Japanese text
+	fmt.Println(NIHONGO)
+
+	jhello := "こんにちは" //Japanese hello
+	for _, runeValue := range jhello {
+		fmt.Println(string(runeValue))
+		// fmt.Printf("%c\n", runeValue)
+	}
+
+	r := '😁'
+	fmt.Printf("%v\n", r)
+	fmt.Printf("%c\n", r)
+}
