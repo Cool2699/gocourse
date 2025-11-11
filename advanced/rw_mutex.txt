@@ -1,0 +1,40 @@
+package main
+
+import (
+	"fmt"
+	"sync"
+	"time"
+)
+
+var (
+	rwmu    sync.RWMutex
+	counter int
+)
+
+func readCounter() {
+	rwmu.RLock()
+	fmt.Println("Read Counter:", counter)
+	rwmu.RUnlock()
+}
+
+func writeCounter(value int) {
+	rwmu.Lock()
+	counter = value
+	fmt.Printf("Written value %d for counter.\n", counter)
+	rwmu.Unlock()
+}
+
+func main() {
+	var wg sync.WaitGroup
+	for range 5 {
+		wg.Go(func() {
+			readCounter()
+		})
+	}
+
+	time.Sleep(time.Second)
+	wg.Go(func() {
+		writeCounter(18)
+	})
+	wg.Wait()
+}
